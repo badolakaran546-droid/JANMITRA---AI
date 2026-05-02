@@ -1,0 +1,798 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JAANMITR AI - Frontend Prototype</title>
+  <style>
+    :root {
+      --bg: #f8f9ff;
+      --surface: #ffffff;
+      --text: #151515;
+      --muted: #6a6a76;
+      --line: #e9e9f2;
+      --blue: #3f7cff;
+      --violet: #9f30ff;
+      --purple: #7b47ff;
+      --green: #11a865;
+      --danger: #f04d52;
+      --shadow: 0 10px 30px rgba(30, 25, 80, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fbfbff 0%, #f4f6ff 100%);
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .top {
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .logo {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      font-size: 17px;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 26px;
+      margin-left: 14px;
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .top-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn,
+    .login-btn,
+    .gradient-btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .login-btn,
+    .gradient-btn {
+      color: #fff;
+      padding: 10px 18px;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+    }
+
+    .onboarding-wrap {
+      min-height: calc(100vh - 70px);
+      display: grid;
+      place-items: center;
+      padding: 28px 0 40px;
+    }
+
+    .welcome {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .welcome .logo {
+      margin: 0 auto 12px;
+    }
+
+    .welcome h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: 0.01em;
+    }
+
+    .welcome p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid #f1f1f7;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      width: min(900px, 100%);
+      padding: 26px;
+    }
+
+    .steps {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 4px 0 24px;
+    }
+
+    .dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: #7d7d8f;
+      background: #f6f6fb;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+    }
+
+    .dot.active {
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .bar {
+      height: 3px;
+      flex: 1;
+      border-radius: 4px;
+      background: #e9e9f2;
+    }
+
+    .bar.active {
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+    }
+
+    .q-title {
+      font-size: clamp(24px, 3vw, 36px);
+      margin: 6px 0 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pick {
+      min-height: 108px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      cursor: pointer;
+      padding: 12px;
+      transition: all 0.15s ease;
+    }
+
+    .pick .emoji {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .pick strong {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .pick.selected {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 2px rgba(123, 71, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .states {
+      max-height: 330px;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .state-btn {
+      border: 1px solid var(--line);
+      min-height: 64px;
+      border-radius: 14px;
+      font-size: 26px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: left;
+      padding: 0 16px;
+    }
+
+    .state-btn.selected {
+      border-color: var(--purple);
+      background: #f8f4ff;
+    }
+
+    .panel-actions {
+      margin-top: 22px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .gradient-btn {
+      min-width: 230px;
+      min-height: 54px;
+      font-size: 22px;
+      border-radius: 14px;
+    }
+
+    .dashboard {
+      padding: 20px 0 30px;
+    }
+
+    .welcome-chip {
+      width: fit-content;
+      margin: 18px auto 10px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #3968dc;
+      font-weight: 700;
+      padding: 10px 16px;
+    }
+
+    .dashboard h2 {
+      text-align: center;
+      margin: 10px 0 8px;
+      font-size: clamp(30px, 3.2vw, 44px);
+      color: #5d46d7;
+    }
+
+    .dashboard .sub {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 21px;
+    }
+
+    .stats {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat .emoji {
+      font-size: 30px;
+    }
+
+    .stat .kpi {
+      margin-top: 10px;
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .stat .kpi.green {
+      color: var(--green);
+    }
+
+    .stat .kpi.blue {
+      color: var(--blue);
+    }
+
+    .stat .kpi.purple {
+      color: #874fff;
+    }
+
+    .stat small {
+      display: block;
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .tabs {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .tab.active {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+    }
+
+    .cards-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .opp-card {
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      border-top: 4px solid #15b97d;
+    }
+
+    .opp-card.job {
+      border-top-color: #3e80ff;
+    }
+
+    .opp-card.tender {
+      border-top-color: #8b56ff;
+    }
+
+    .opp-card.compensation {
+      border-top-color: var(--danger);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border-radius: 999px;
+      padding: 5px 9px;
+      margin-bottom: 8px;
+      background: #e9f8f0;
+      color: #138b5a;
+    }
+
+    .job .tag {
+      background: #edf4ff;
+      color: #3664d0;
+    }
+
+    .tender .tag {
+      background: #f2ecff;
+      color: #6c40d1;
+    }
+
+    .compensation .tag {
+      background: #ffeef0;
+      color: #c92c34;
+    }
+
+    .opp-card h3 {
+      margin: 6px 0 8px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .dept {
+      color: #57576a;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      color: #303040;
+      min-height: 52px;
+      margin-bottom: 10px;
+      line-height: 1.35;
+      font-size: 15px;
+    }
+
+    .meta {
+      color: #5d5d72;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .money {
+      border: 1px solid #c8f3dd;
+      background: #ebfff4;
+      color: #107046;
+      border-radius: 10px;
+      font-weight: 700;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      font-size: 13px;
+      color: #66667a;
+    }
+
+    .progress {
+      height: 8px;
+      border-radius: 999px;
+      background: #e5e6ef;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+    }
+
+    .btn-card {
+      width: 100%;
+      border-radius: 12px;
+      border: none;
+      min-height: 44px;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .top-nav {
+        display: none;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .cards,
+      .states-grid,
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome p,
+      .dashboard .sub,
+      .tab,
+      .state-btn,
+      .pick strong,
+      .gradient-btn {
+        font-size: 17px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="container top-row">
+      <div class="brand">
+        <div class="logo">🤖</div>
+        JAANMITR AI
+      </div>
+      <nav class="top-nav">
+        <a href="#">Schemes</a>
+        <a href="#">Jobs</a>
+        <a href="#">Tenders</a>
+        <a href="#">Compensation</a>
+      </nav>
+      <div class="top-actions">
+        <button class="icon-btn" aria-label="Voice">🎙</button>
+        <button class="icon-btn" aria-label="Search">⌕</button>
+        <button class="icon-btn" aria-label="Translate">文</button>
+        <button class="icon-btn" aria-label="Theme">◐</button>
+        <button class="login-btn">Login</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="onboarding" class="onboarding-wrap">
+      <div class="container">
+        <div class="welcome">
+          <div class="logo">🤖</div>
+          <h1>Welcome to JAANMITR AI</h1>
+          <p>Your AI-powered government information assistant</p>
+        </div>
+
+        <div class="panel">
+          <div class="steps">
+            <div class="dot active" data-step-dot="1">1</div>
+            <div class="bar active" data-step-bar="1"></div>
+            <div class="dot" data-step-dot="2">2</div>
+            <div class="bar" data-step-bar="2"></div>
+            <div class="dot" data-step-dot="3">3</div>
+          </div>
+
+          <div data-step="1">
+            <h2 class="q-title">Who are you?</h2>
+            <div class="cards select-group" data-key="role">
+              <button class="pick" data-value="Farmer"><span class="emoji">🌾</span><strong>Farmer</strong></button>
+              <button class="pick" data-value="Student"><span class="emoji">🎓</span><strong>Student</strong></button>
+              <button class="pick" data-value="Worker"><span class="emoji">👷</span><strong>Worker</strong></button>
+              <button class="pick" data-value="Contractor"><span class="emoji">🏗</span><strong>Contractor</strong></button>
+              <button class="pick" data-value="Job Seeker"><span class="emoji">💼</span><strong>Job Seeker</strong></button>
+              <button class="pick" data-value="Other"><span class="emoji">👤</span><strong>Other</strong></button>
+            </div>
+          </div>
+
+          <div data-step="2" class="hidden">
+            <h2 class="q-title">Where are you from?</h2>
+            <div class="states">
+              <div class="states-grid select-group" data-key="state">
+                <button class="state-btn" data-value="Andhra Pradesh">Andhra Pradesh</button>
+                <button class="state-btn" data-value="Bihar">Bihar</button>
+                <button class="state-btn" data-value="Gujarat">Gujarat</button>
+                <button class="state-btn" data-value="Karnataka">Karnataka</button>
+                <button class="state-btn" data-value="Kerala">Kerala</button>
+                <button class="state-btn" data-value="Madhya Pradesh">Madhya Pradesh</button>
+                <button class="state-btn" data-value="Maharashtra">Maharashtra</button>
+                <button class="state-btn" data-value="Rajasthan">Rajasthan</button>
+                <button class="state-btn" data-value="Tamil Nadu">Tamil Nadu</button>
+                <button class="state-btn" data-value="Uttar Pradesh">Uttar Pradesh</button>
+                <button class="state-btn" data-value="West Bengal">West Bengal</button>
+                <button class="state-btn" data-value="Delhi">Delhi</button>
+              </div>
+            </div>
+          </div>
+
+          <div data-step="3" class="hidden">
+            <h2 class="q-title">What interests you most?</h2>
+            <div class="cards select-group" data-key="interest">
+              <button class="pick" data-value="Agriculture"><span class="emoji">🌾</span><strong>Agriculture</strong></button>
+              <button class="pick" data-value="Education"><span class="emoji">🎓</span><strong>Education</strong></button>
+              <button class="pick" data-value="Employment"><span class="emoji">💼</span><strong>Employment</strong></button>
+              <button class="pick" data-value="Infrastructure"><span class="emoji">🏗</span><strong>Infrastructure</strong></button>
+              <button class="pick" data-value="Healthcare"><span class="emoji">⚕</span><strong>Healthcare</strong></button>
+              <button class="pick" data-value="All Categories"><span class="emoji">✨</span><strong>All Categories</strong></button>
+            </div>
+          </div>
+
+          <div class="panel-actions">
+            <button id="continueBtn" class="gradient-btn">Continue</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+      <div class="container">
+        <div class="welcome-chip">Personalized for you</div>
+        <h2 id="welcomeHeading">Welcome back</h2>
+        <p class="sub">AI-powered platform connecting you to schemes, jobs, tenders, and compensation opportunities matched to your profile.</p>
+
+        <div class="stats">
+          <article class="stat">
+            <div class="emoji">🌾</div>
+            <div class="kpi green">500+ Schemes</div>
+            <small>Welfare Programs</small>
+          </article>
+          <article class="stat">
+            <div class="emoji">💼</div>
+            <div class="kpi blue">1000+ Jobs</div>
+            <small>Government Openings</small>
+          </article>
+          <article class="stat">
+            <div class="emoji">🏗</div>
+            <div class="kpi purple">200+ Tenders</div>
+            <small>Business Opportunities</small>
+          </article>
+        </div>
+
+        <div class="tabs" id="tabs"></div>
+        <div class="cards-grid" id="cardsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      step: 1,
+      answers: { role: "", state: "", interest: "" },
+      activeTab: "For You"
+    };
+
+    const tabs = ["For You", "Schemes", "Jobs", "Tenders", "Compensation"];
+    const opportunities = [
+      { type: "scheme", title: "PM Kisan Samman Nidhi", dept: "Ministry of Agriculture", desc: "Income support for eligible small and marginal farmers.", location: "Pan-India", date: "2026-06-10", amount: "Rs 6,000 yearly", match: 67 },
+      { type: "compensation", title: "Crop Insurance Claim - Kharif 2026", dept: "State Agriculture Department", desc: "Claim support for seasonal crop damage due to weather loss.", location: "Bihar, UP", date: "2026-06-20", amount: "Rs 10,000-Rs 95,000", match: 58 },
+      { type: "scheme", title: "National Scholarship Portal", dept: "Ministry of Education", desc: "Merit and need-based scholarships for school and college students.", location: "National", date: "2026-07-12", amount: "Up to Rs 75,000", match: 74 },
+      { type: "scheme", title: "MGNREGA (100 Days Work)", dept: "Ministry of Rural Development", desc: "Guaranteed wage employment for rural households.", location: "All States", date: "2026-06-05", amount: "100 days guaranteed employment", match: 71 },
+      { type: "scheme", title: "Pradhan Mantri Awas Yojana", dept: "Ministry of Housing", desc: "Financial assistance for construction of pucca houses.", location: "National", date: "2026-08-01", amount: "Rs 1.2-Rs 2.5 lakh subsidy", match: 49 },
+      { type: "job", title: "Junior Engineer (Civil)", dept: "Public Works Department", desc: "Civil engineering positions for infrastructure projects.", location: "Uttar Pradesh", date: "2026-06-10", amount: "Salary by grade", match: 33 },
+      { type: "job", title: "Gramin Dak Sevak", dept: "India Post", desc: "Rural postal service roles in delivery and branch operations.", location: "State-wise", date: "2026-06-15", amount: "As per post", match: 52 },
+      { type: "tender", title: "Rural Road Construction - Bihar", dept: "Bihar Rural Development Dept.", desc: "Construction under PMGSY for district connectivity roads.", location: "Bihar", date: "2026-05-20", amount: "Project value Rs 15 crore", match: 44 },
+      { type: "job", title: "Anganwadi Worker", dept: "Women & Child Development", desc: "Community childcare and nutrition support roles.", location: "State-wise", date: "2026-06-01", amount: "As per state norms", match: 56 },
+      { type: "tender", title: "Solar Panel Installation - Schools", dept: "Rajasthan Energy Dept.", desc: "Solar setup for government schools in rural blocks.", location: "Rajasthan", date: "2026-05-25", amount: "Project value Rs 8 crore", match: 46 },
+      { type: "compensation", title: "Flood Relief Assistance", dept: "State Disaster Management", desc: "Compensation for families affected by flood events.", location: "Assam, Bihar, UP", date: "2026-05-15", amount: "Rs 10,000-Rs 95,000", match: 62 },
+      { type: "job", title: "Forest Guard Recruitment", dept: "State Forest Department", desc: "Recruitment for forest conservation and protection.", location: "Madhya Pradesh", date: "2026-05-28", amount: "Salary by cadre", match: 40 }
+    ];
+
+    function qs(sel) { return document.querySelector(sel); }
+    function qsa(sel) { return document.querySelectorAll(sel); }
+
+    function updateSteps() {
+      [1, 2, 3].forEach((n) => {
+        const dot = qs(`[data-step-dot="${n}"]`);
+        dot.classList.toggle("active", n <= state.step);
+      });
+      [1, 2].forEach((n) => {
+        const bar = qs(`[data-step-bar="${n}"]`);
+        bar.classList.toggle("active", n < state.step);
+      });
+
+      qsa("[data-step]").forEach((el) => {
+        const show = Number(el.getAttribute("data-step")) === state.step;
+        el.classList.toggle("hidden", !show);
+      });
+
+      qs("#continueBtn").textContent = state.step === 3 ? "Get Started" : "Continue";
+    }
+
+    function initSelection() {
+      qsa(".select-group").forEach((group) => {
+        group.addEventListener("click", (e) => {
+          const btn = e.target.closest("button[data-value]");
+          if (!btn) return;
+          const key = group.getAttribute("data-key");
+
+          group.querySelectorAll("button").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          state.answers[key] = btn.getAttribute("data-value");
+        });
+      });
+    }
+
+    function nextStep() {
+      const requiredKey = state.step === 1 ? "role" : state.step === 2 ? "state" : "interest";
+      if (!state.answers[requiredKey]) {
+        alert("Please select an option to continue.");
+        return;
+      }
+
+      if (state.step < 3) {
+        state.step += 1;
+        updateSteps();
+      } else {
+        openDashboard();
+      }
+    }
+
+    function openDashboard() {
+      qs("#onboarding").classList.add("hidden");
+      qs("#dashboard").classList.remove("hidden");
+      const role = state.answers.role || "User";
+      qs("#welcomeHeading").textContent = `Welcome back, ${role}`;
+      renderTabs();
+      renderCards();
+    }
+
+    function renderTabs() {
+      const tabsEl = qs("#tabs");
+      tabsEl.innerHTML = tabs.map((tab) => {
+        const active = state.activeTab === tab ? "active" : "";
+        return `<button class="tab ${active}" data-tab="${tab}">${tab}</button>`;
+      }).join("");
+
+      tabsEl.querySelectorAll(".tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          state.activeTab = btn.getAttribute("data-tab");
+          renderTabs();
+          renderCards();
+        });
+      });
+    }
+
+    function typeClass(type) {
+      return type === "job" ? "job" : type === "tender" ? "tender" : type === "compensation" ? "compensation" : "scheme";
+    }
+
+    function formatTag(type) {
+      return type.toUpperCase();
+    }
+
+    function filterData() {
+      if (state.activeTab === "For You") return opportunities;
+      const key = state.activeTab.toLowerCase().slice(0, -1);
+      return opportunities.filter((x) => x.type === key);
+    }
+
+    function renderCards() {
+      const data = filterData();
+      const grid = qs("#cardsGrid");
+      grid.innerHTML = data.map((item) => {
+        const cls = typeClass(item.type);
+        const money = `<div class="money">${item.amount}</div>`;
+        return `
+          <article class="opp-card ${cls}">
+            <span class="tag">${formatTag(item.type)}</span>
+            <h3>${item.title}</h3>
+            <div class="dept">${item.dept}</div>
+            <div class="desc">${item.desc}</div>
+            <div class="meta">Location: ${item.location} · Last date: ${item.date}</div>
+            ${money}
+            <div class="progress-row"><span>Eligibility Match</span><strong>${item.match}%</strong></div>
+            <div class="progress"><span style="width:${item.match}%"></span></div>
+            <button class="btn-card">View Details</button>
+          </article>
+        `;
+      }).join("");
+    }
+
+    qs("#continueBtn").addEventListener("click", nextStep);
+    initSelection();
+    updateSteps();
+  </script>
+</body>
+</html>
+>>>>>>> 9e792e824a1761f0da6ef0a438a138031a5ea7ae

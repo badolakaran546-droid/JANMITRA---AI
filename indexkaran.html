@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JAANMITR AI – Citizens First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+/* =============================================
+   JAANMITR AI – Full Production Stylesheet
+   ============================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #f2f0eb;
+  --surface:  #ffffff;
+  --text:     #0e0e0e;
+  --muted:    #6b6760;
+  --line:     #e2dfd8;
+  --accent:   #1a3a5c;
+  --accent2:  #c45e1a;
+  --green:    #1a6b3c;
+  --danger:   #b0291d;
+  --gold:     #d4a020;
+  --shadow:   0 4px 24px rgba(0,0,0,0.07);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.13);
+  --r:        10px;
+  --r2:       16px;
+  --r3:       24px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+.hidden { display: none !important; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c8c5be; border-radius: 4px; }
+
+/* =============================================
+   TOPBAR
+   ============================================= */
+.topbar {
+  background: var(--accent);
+  color: #fff;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 3px solid var(--accent2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: .03em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.brand-dot {
+  width: 30px;
+  height: 30px;
+  background: var(--accent2);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+}
+
+.brand-sub {
+  color: rgba(255,255,255,.4);
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.top-nav {
+  display: flex;
+  gap: 6px;
+  margin-left: 24px;
+}
+
+.top-nav a {
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all .15s;
+}
+
+.top-nav a:hover { color: #fff; background: rgba(255,255,255,.1); }
+
+.top-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  display: grid;
+  place-items: center;
+  transition: background .15s;
+}
+
+.icon-btn:hover { background: rgba(255,255,255,.2); }
+
+.login-btn {
+  background: var(--accent2);
+  border: none;
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.login-btn:hover { background: #a84e14; }
+
+/* =============================================
+   ONBOARDING
+   ============================================= */
+.onboard {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  background: linear-gradient(135deg, #eae7e0 0%, #f8f5ef 50%, #edf2f7 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background circles */
+.onboard::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,58,92,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.onboard::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,94,26,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ob-inner { width: min(840px, 100%); position: relative; z-index: 1; }
+
+.ob-head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ob-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(26,58,92,.08);
+  border: 1px solid rgba(26,58,92,.15);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin-bottom: 16px;
+}
+
+.ob-head h1 {
+  font-size: clamp(30px, 5vw, 52px);
+  color: var(--accent);
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.ob-head h1 span { color: var(--accent2); }
+
+.ob-head p {
+  color: var(--muted);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ob-head p span { opacity: .4; }
+
+.ob-card {
+  background: var(--surface);
+  border-radius: var(--r3);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  padding: 32px;
+}
+
+/* Progress strip */
+.progress-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.ps-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: #f5f4f0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  transition: all .25s ease;
+  flex-shrink: 0;
+}
+
+.ps-dot.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(26,58,92,.12);
+}
+
+.ps-dot.done {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.ps-line {
+  flex: 1;
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  transition: background .4s ease;
+}
+
+.ps-line.on { background: var(--accent); }
+
+.ps-label {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.step-title {
+  font-size: clamp(22px, 3vw, 34px);
+  color: var(--accent);
+  margin-bottom: 22px;
+  letter-spacing: -.01em;
+}
+
+/* Pick grid – role / interest */
+.pick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.pick-btn {
+  border: 2px solid var(--line);
+  background: #f9f8f4;
+  border-radius: var(--r2);
+  padding: 18px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .18s ease;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+
+.pick-btn:hover {
+  border-color: var(--accent);
+  background: #edf2f7;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.pick-btn.sel {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26,58,92,.25);
+}
+
+.pick-btn .emo {
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.pick-btn strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* State selector */
+.state-scroll { max-height: 300px; overflow-y: auto; padding-right: 4px; }
+
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.state-btn {
+  border: 2px solid var(--line);
+  background: #f9f8f4;
+  border-radius: var(--r);
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
+  transition: all .15s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.state-btn:hover { border-color: var(--accent); background: #edf2f7; }
+
+.state-btn.sel {
+  border-color: var(--accent);
+  background: #edf2f7;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.ob-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.ob-actions .hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cta-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 13px 36px;
+  border-radius: var(--r);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .18s;
+  letter-spacing: .01em;
+}
+
+.cta-btn:hover {
+  background: #15304d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26,58,92,.25);
+}
+
+.cta-btn.orange { background: var(--accent2); }
+.cta-btn.orange:hover { background: #a84e14; }
+
+/* =============================================
+   DASHBOARD
+   ============================================= */
+.dash { padding: 24px 0 60px; }
+
+.dash-inner {
+  width: min(1140px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* Hero banner */
+.dash-hero {
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--r3);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-hero::before {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+  pointer-events: none;
+}
+
+.dash-hero::after {
+  content: '';
+  position: absolute;
+  right: 100px;
+  bottom: -80px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.03);
+  pointer-events: none;
+}
+
+.hero-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--accent2);
+  border-radius: var(--r2);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.hero-txt h2 {
+  font-size: clamp(20px, 3vw, 30px);
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+
+.hero-txt p {
+  margin-top: 6px;
+  opacity: .7;
+  font-size: 14px;
+  max-width: 540px;
+}
+
+.hero-chips {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-chip {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hero-stat {
+  margin-left: auto;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.hero-stat .big {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent2);
+  line-height: 1;
+}
+
+.hero-stat small {
+  font-size: 12px;
+  opacity: .65;
+  display: block;
+  margin-top: 4px;
+}
+
+/* KPI row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.kpi {
+  background: var(--surface);
+  border-radius: var(--r2);
+  border: 1px solid var(--line);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.kpi-icon.g { background: #e8f5ee; }
+.kpi-icon.b { background: #e6eef9; }
+.kpi-icon.o { background: #fdf0e6; }
+
+.kpi-text {}
+.kpi .k-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.kpi .k-label { font-size: 12px; color: var(--muted); }
+.k-green { color: var(--green); }
+.k-blue  { color: var(--accent); }
+.k-orange{ color: var(--accent2); }
+
+/* Main body layout */
+.dash-body {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── TABS ── */
+.tab-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .15s;
+  color: var(--text);
+}
+
+.tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.tab-btn.on {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(26,58,92,.2);
+}
+
+/* ── OPPORTUNITY CARDS ── */
+.cards-list { display: flex; flex-direction: column; gap: 14px; }
+
+.ocard {
+  background: var(--surface);
+  border-radius: var(--r2);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s, transform .2s;
+}
+
+.ocard:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.ocard.job          { border-left-color: var(--accent); }
+.ocard.tender       { border-left-color: var(--accent2); }
+.ocard.compensation { border-left-color: var(--danger); }
+
+.ocard-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.otag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e8f4ec;
+  color: #1a6b3c;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.otag.job          { background: #e6eef9; color: var(--accent); }
+.otag.tender       { background: #fdf0e6; color: var(--accent2); }
+.otag.compensation { background: #fceae8; color: var(--danger); }
+
+.ocard h3 {
+  font-size: 16px;
+  font-weight: 700;
+  flex: 1;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.omatch {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  background: #edf9f2;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.odept {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.odesc {
+  font-size: 13.5px;
+  color: #3a3a3a;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.ometa {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.omoney {
+  background: #f0faf5;
+  border: 1px solid #c8e8d8;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--green);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pbar-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.pbar {
+  height: 6px;
+  background: #e8e5df;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.pbar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #3a7bd5);
+  border-radius: 4px;
+  transition: width .6s ease;
+}
+
+.ocard-actions { display: flex; gap: 8px; }
+
+.view-btn {
+  flex: 1;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background .15s;
+}
+
+.view-btn:hover { background: #15304d; }
+
+.ai-btn {
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.ai-btn:hover { background: var(--accent); color: #fff; }
+
+/* =============================================
+   CHAT SIDEBAR
+   ============================================= */
+.chat-box {
+  background: var(--surface);
+  border-radius: var(--r2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 580px;
+  position: sticky;
+  top: 76px;
+}
+
+.chat-head {
+  background: var(--accent);
+  color: #fff;
+  padding: 16px 18px;
+  border-radius: var(--r2) var(--r2) 0 0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-head-right {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.chat-head-btn {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4cff8e;
+  animation: pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .5; transform: scale(.85); }
+}
+
+.chat-msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  max-width: 90%;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  animation: fadeUp .2s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg.ai {
+  background: #f0f4fb;
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+
+.msg.user {
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+
+.msg.typing {
+  opacity: .6;
+  font-style: italic;
+}
+
+.typing-dots {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background: var(--muted);
+  border-radius: 50%;
+  animation: dot-bounce .9s ease-in-out infinite;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: .15s; }
+.typing-dots span:nth-child(3) { animation-delay: .3s; }
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(.7); opacity: .5; }
+  40%           { transform: scale(1); opacity: 1; }
+}
+
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 14px 10px;
+  border-top: 1px solid var(--line);
+}
+
+.q-chip {
+  border: 1px solid var(--line);
+  background: #f6f5f0;
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  transition: all .15s;
+}
+
+.q-chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--line);
+}
+
+.chat-input {
+  flex: 1;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  outline: none;
+  resize: none;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color .15s;
+  line-height: 1.4;
+}
+
+.chat-input:focus { border-color: var(--accent); }
+
+.send-btn {
+  background: var(--accent2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+
+.send-btn:hover { background: #a84e14; }
+
+/* =============================================
+   DETAIL MODAL
+   ============================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+
+.modal-box {
+  background: var(--surface);
+  border-radius: var(--r3);
+  width: min(700px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,.25);
+  animation: slideUp .25s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-head {
+  background: var(--accent);
+  color: #fff;
+  padding: 24px 28px;
+  border-radius: var(--r3) var(--r3) 0 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.modal-head-icon {
+  width: 46px;
+  height: 46px;
+  background: var(--accent2);
+  border-radius: var(--r);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.modal-head-txt { flex: 1; }
+
+.modal-head h2 {
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.modal-head .m-dept { opacity: .65; font-size: 13px; }
+
+.close-btn {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+
+.close-btn:hover { background: rgba(255,255,255,.25); }
+
+.modal-body { padding: 28px; }
+
+.detail-loading {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--muted);
+}
+
+.loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.detail-section { margin-bottom: 22px; }
+
+.detail-section h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detail-section h4::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.detail-section p,
+.detail-section li {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.detail-section ul { padding-left: 20px; }
+.detail-section ul li { margin-bottom: 4px; }
+
+.ai-tip-box {
+  background: #f0f9ff;
+  border: 1px solid #c2dff5;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  margin-top: 6px;
+}
+
+.ai-tip-box p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #1a3a5c;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.apply-btn {
+  flex: 1;
+  background: var(--accent2);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: var(--r);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.apply-btn:hover { background: #a84e14; }
+
+.share-btn {
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 14px 18px;
+  border-radius: var(--r);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* =============================================
+   TOAST NOTIFICATION
+   ============================================= */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--r);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 999;
+  box-shadow: var(--shadow-lg);
+  animation: fadeUp .25s ease;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 960px) {
+  .dash-body { grid-template-columns: 1fr; }
+  .chat-box  { height: 440px; position: relative; top: 0; }
+  .kpi-row   { grid-template-columns: repeat(3, 1fr); }
+  .top-nav   { display: none; }
+}
+
+@media (max-width: 680px) {
+  .kpi-row       { grid-template-columns: 1fr; }
+  .pick-grid     { grid-template-columns: repeat(2, 1fr); }
+  .state-grid    { grid-template-columns: 1fr; }
+  .dash-hero     { flex-direction: column; text-align: center; }
+  .hero-stat     { margin-left: 0; text-align: center; }
+  .ob-card       { padding: 20px; }
+  .modal-body    { padding: 20px; }
+  .modal-head    { padding: 18px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     TOPBAR
+     ══════════════════════════════════════════ -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-dot">🤖</div>
+    JAANMITR AI
+  </div>
+  <span class="brand-sub">· Citizens First</span>
+  <nav class="top-nav">
+    <a href="#">Schemes</a>
+    <a href="#">Jobs</a>
+    <a href="#">Tenders</a>
+    <a href="#">Compensation</a>
+    <a href="#">Help</a>
+  </nav>
+  <div class="top-actions">
+    <button class="icon-btn" title="Voice Search" onclick="toast('🎙 Voice search coming soon!')">🎙</button>
+    <button class="icon-btn" title="Search"       onclick="toast('🔍 Search coming soon!')">⌕</button>
+    <button class="icon-btn" title="Language"     onclick="askLang()">🌐</button>
+    <button class="login-btn">Login / Register</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     ONBOARDING
+     ══════════════════════════════════════════ -->
+<section id="ob" class="onboard">
+  <div class="ob-inner">
+
+    <div class="ob-head">
+      <div class="ob-badge">🇮🇳 &nbsp;Official Government Scheme Tracker</div>
+      <h1>Your gateway to<br><span>government opportunities</span></h1>
+      <p>AI-powered <span>·</span> Personalized <span>·</span> Multilingual <span>·</span> Free</p>
+    </div>
+
+    <div class="ob-card">
+      <!-- Progress -->
+      <div class="progress-strip">
+        <div class="ps-dot on" id="pd1">1</div>
+        <div class="ps-line"  id="pl1"></div>
+        <div class="ps-dot"   id="pd2">2</div>
+        <div class="ps-line"  id="pl2"></div>
+        <div class="ps-dot"   id="pd3">3</div>
+      </div>
+
+      <!-- Step 1 – Role -->
+      <div id="s1">
+        <div class="ps-label">Step 1 of 3</div>
+        <div class="step-title">Who are you?</div>
+        <div class="pick-grid sg" data-k="role">
+          <button class="pick-btn" data-v="Farmer">
+            <span class="emo">🌾</span><strong>Farmer</strong>
+          </button>
+          <button class="pick-btn" data-v="Student">
+            <span class="emo">🎓</span><strong>Student</strong>
+          </button>
+          <button class="pick-btn" data-v="Worker">
+            <span class="emo">👷</span><strong>Worker</strong>
+          </button>
+          <button class="pick-btn" data-v="Contractor">
+            <span class="emo">🏗</span><strong>Contractor</strong>
+          </button>
+          <button class="pick-btn" data-v="Job Seeker">
+            <span class="emo">💼</span><strong>Job Seeker</strong>
+          </button>
+          <button class="pick-btn" data-v="Other">
+            <span class="emo">👤</span><strong>Other</strong>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2 – State -->
+      <div id="s2" class="hidden">
+        <div class="ps-label">Step 2 of 3</div>
+        <div class="step-title">Where are you from?</div>
+        <div class="state-scroll">
+          <div class="state-grid sg" data-k="state">
+            <button class="state-btn" data-v="Andhra Pradesh">🏛 Andhra Pradesh</button>
+            <button class="state-btn" data-v="Bihar">🏛 Bihar</button>
+            <button class="state-btn" data-v="Gujarat">🏛 Gujarat</button>
+            <button class="state-btn" data-v="Karnataka">🏛 Karnataka</button>
+            <button class="state-btn" data-v="Kerala">🏛 Kerala</button>
+            <button class="state-btn" data-v="Madhya Pradesh">🏛 Madhya Pradesh</button>
+            <button class="state-btn" data-v="Maharashtra">🏛 Maharashtra</button>
+            <button class="state-btn" data-v="Punjab">🏛 Punjab</button>
+            <button class="state-btn" data-v="Rajasthan">🏛 Rajasthan</button>
+            <button class="state-btn" data-v="Tamil Nadu">🏛 Tamil Nadu</button>
+            <button class="state-btn" data-v="Uttar Pradesh">🏛 Uttar Pradesh</button>
+            <button class="state-btn" data-v="West Bengal">🏛 West Bengal</button>
+            <button class="state-btn" data-v="Delhi">🏛 Delhi</button>
+            <button class="state-btn" data-v="Telangana">🏛 Telangana</button>
+            <button class="state-btn" data-v="Jharkhand">🏛 Jharkhand</button>
+            <button class="state-btn" data-v="Odisha">🏛 Odisha</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 – Interest -->
+      <div id="s3" class="hidden">
+        <div class="ps-label">Step 3 of 3</div>
+        <div class="step-title">What interests you most?</div>
+        <div class="pick-grid sg" data-k="interest">
+          <button class="pick-btn" data-v="Agriculture">
+            <span class="emo">🌾</span><strong>Agriculture</strong>
+          </button>
+          <button class="pick-btn" data-v="Education">
+            <span class="emo">🎓</span><strong>Education</strong>
+          </button>
+          <button class="pick-btn" data-v="Employment">
+            <span class="emo">💼</span><strong>Employment</strong>
+          </button>
+          <button class="pick-btn" data-v="Infrastructure">
+            <span class="emo">🏗</span><strong>Infrastructure</strong>
+          </button>
+          <button class="pick-btn" data-v="Healthcare">
+            <span class="emo">⚕</span><strong>Healthcare</strong>
+          </button>
+          <button class="pick-btn" data-v="All Categories">
+            <span class="emo">✨</span><strong>All Categories</strong>
+          </button>
+        </div>
+      </div>
+
+      <div class="ob-actions">
+        <span class="hint" id="obHint">Select an option to continue</span>
+        <button id="nextBtn" class="cta-btn" onclick="nextStep()">Continue →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DASHBOARD
+     ══════════════════════════════════════════ -->
+<section id="dash" class="dash hidden">
+  <div class="dash-inner">
+
+    <!-- Hero -->
+    <div class="dash-hero">
+      <div class="hero-icon">🤖</div>
+      <div class="hero-txt">
+        <h2 id="heroTitle">Welcome back</h2>
+        <p id="heroSub">Personalized opportunities matched to your profile.</p>
+        <div class="hero-chips" id="heroChips"></div>
+      </div>
+      <div class="hero-stat">
+        <div class="big" id="heroMatchCount">—</div>
+        <small>opportunities found</small>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-icon g">🌾</div>
+        <div class="kpi-text">
+          <div class="k-num k-green">500+</div>
+          <div class="k-label">Active Schemes</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon b">💼</div>
+        <div class="kpi-text">
+          <div class="k-num k-blue">1,200+</div>
+          <div class="k-label">Government Jobs</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon o">🏗</div>
+        <div class="kpi-text">
+          <div class="k-num k-orange">220+</div>
+          <div class="k-label">Open Tenders</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body: cards + chat -->
+    <div class="dash-body">
+
+      <!-- LEFT: tabs + cards -->
+      <div class="left-col">
+        <div class="tab-row" id="tabs"></div>
+        <div class="cards-list" id="cardsList"></div>
+      </div>
+
+      <!-- RIGHT: AI Chat -->
+      <div class="right-col">
+        <div class="chat-box">
+          <div class="chat-head">
+            <div class="online-dot"></div>
+            JAANMITR Assistant · AI
+            <div class="chat-head-right">
+              <button class="chat-head-btn" title="Clear chat" onclick="clearChat()">🗑</button>
+              <button class="chat-head-btn" title="Hindi mode" onclick="switchToHindi()">🇮🇳</button>
+            </div>
+          </div>
+          <div class="chat-msgs" id="chatMsgs"></div>
+          <div class="chat-chips" id="chatChips"></div>
+          <div class="chat-input-row">
+            <textarea
+              class="chat-input"
+              id="chatIn"
+              placeholder="Ask about schemes, eligibility, documents..."
+              rows="1"
+              onkeydown="handleKey(event)"
+              oninput="autoResize(this)"
+            ></textarea>
+            <button class="send-btn" onclick="sendChat()" title="Send">➤</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DETAIL MODAL
+     ══════════════════════════════════════════ -->
+<div id="modal" class="modal-overlay hidden" onclick="handleModalClick(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-head-icon" id="mIcon">📋</div>
+      <div class="modal-head-txt">
+        <h2 id="mTitle"></h2>
+        <div class="m-dept" id="mDept"></div>
+      </div>
+      <button class="close-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════ -->
+<script>
+// ─── STATE ────────────────────────────────────────────────
+const S = {
+  step: 1,
+  ans: { role: '', state: '', interest: '' },
+  tab: 'For You'
+};
+
+const TABS = ['For You', 'Schemes', 'Jobs', 'Tenders', 'Compensation'];
+
+const TYPE_ICONS = {
+  scheme: '🌾', job: '💼', tender: '🏗', compensation: '🛡'
+};
+
+// ─── OPPORTUNITY DATA ─────────────────────────────────────
+const DATA = [
+  {
+    type: 'scheme',
+    title: 'PM Kisan Samman Nidhi',
+    dept: 'Ministry of Agriculture & Farmers Welfare',
+    desc: 'Direct income support of ₹6,000 per year for small and marginal farmer families, paid in three equal instalments of ₹2,000 each.',
+    location: 'Pan-India',
+    date: '2026-06-10',
+    amount: '₹6,000 / year',
+    match: 67,
+    roles: ['Farmer']
+  },
+  {
+    type: 'compensation',
+    title: 'Crop Insurance Claim – Kharif 2026',
+    dept: 'State Agriculture Department',
+    desc: 'Compensation for seasonal crop damage due to natural calamities, drought, or floods. Covers post-harvest losses too.',
+    location: 'Bihar, UP, Maharashtra',
+    date: '2026-06-20',
+    amount: '₹10,000 – ₹95,000',
+    match: 58,
+    roles: ['Farmer']
+  },
+  {
+    type: 'scheme',
+    title: 'National Scholarship Portal',
+    dept: 'Ministry of Education',
+    desc: 'Merit and need-based scholarships for school and college students from all categories including SC/ST/OBC and minorities.',
+    location: 'National',
+    date: '2026-07-12',
+    amount: 'Up to ₹75,000 / year',
+    match: 74,
+    roles: ['Student']
+  },
+  {
+    type: 'scheme',
+    title: 'MGNREGA – 100 Days Work Guarantee',
+    dept: 'Ministry of Rural Development',
+    desc: 'Guaranteed wage employment for at least 100 days per year for every rural household willing to do unskilled manual work.',
+    location: 'All States',
+    date: '2026-06-05',
+    amount: '100 days guaranteed employment',
+    match: 71,
+    roles: ['Worker', 'Farmer']
+  },
+  {
+    type: 'scheme',
+    title: 'Pradhan Mantri Awas Yojana (Gramin)',
+    dept: 'Ministry of Housing & Urban Affairs',
+    desc: 'Financial assistance for construction of pucca houses for rural homeless or kutcha house dwellers.',
+    location: 'National',
+    date: '2026-08-01',
+    amount: '₹1.2 – ₹2.5 lakh subsidy',
+    match: 49,
+    roles: ['Worker', 'Other']
+  },
+  {
+    type: 'job',
+    title: 'Junior Engineer (Civil)',
+    dept: 'Public Works Department, UP',
+    desc: 'Civil engineering positions for state infrastructure, highway, and bridge projects under state PWD recruitment 2026.',
+    location: 'Uttar Pradesh',
+    date: '2026-06-10',
+    amount: 'Pay Scale: ₹35,400 – ₹1,12,400',
+    match: 33,
+    roles: ['Job Seeker', 'Student']
+  },
+  {
+    type: 'job',
+    title: 'Gramin Dak Sevak (GDS)',
+    dept: 'Department of Posts, India Post',
+    desc: 'Rural postal delivery and branch office operations. Open to 10th pass candidates across all states.',
+    location: 'State-wise (44,228 vacancies)',
+    date: '2026-06-15',
+    amount: 'TRCA: ₹10,000 – ₹14,500',
+    match: 52,
+    roles: ['Job Seeker', 'Worker']
+  },
+  {
+    type: 'tender',
+    title: 'Rural Road Construction – PMGSY Bihar',
+    dept: 'Bihar Rural Development Department',
+    desc: 'Construction of all-weather roads connecting habitations under PM Gram Sadak Yojana, Phase III.',
+    location: 'Bihar (23 districts)',
+    date: '2026-05-20',
+    amount: 'Project value: ₹15 crore',
+    match: 44,
+    roles: ['Contractor']
+  },
+  {
+    type: 'job',
+    title: 'Anganwadi Worker / Helper',
+    dept: 'Ministry of Women & Child Development',
+    desc: 'Community childcare, nutrition counselling, and early childhood education support roles in rural and urban areas.',
+    location: 'State-wise',
+    date: '2026-06-01',
+    amount: 'Honorarium as per state norms',
+    match: 56,
+    roles: ['Job Seeker', 'Worker']
+  },
+  {
+    type: 'tender',
+    title: 'Solar Panel Installation – Govt. Schools',
+    dept: 'Rajasthan Renewable Energy Corporation',
+    desc: 'Design, supply, and installation of rooftop solar panels (500kW total) across 80 government schools in rural blocks.',
+    location: 'Rajasthan',
+    date: '2026-05-25',
+    amount: 'Project value: ₹8 crore',
+    match: 46,
+    roles: ['Contractor']
+  },
+  {
+    type: 'compensation',
+    title: 'Flood Relief Assistance 2026',
+    dept: 'State Disaster Management Authority',
+    desc: 'One-time relief for families affected by floods including damage to house, crops, and household goods.',
+    location: 'Assam, Bihar, West Bengal, UP',
+    date: '2026-05-15',
+    amount: '₹10,000 – ₹95,000',
+    match: 62,
+    roles: ['Farmer', 'Worker']
+  },
+  {
+    type: 'job',
+    title: 'Forest Guard Recruitment',
+    dept: 'State Forest Department, MP',
+    desc: 'Forest protection, patrolling, anti-poaching, and conservation duties across reserved and protected forest areas.',
+    location: 'Madhya Pradesh',
+    date: '2026-05-28',
+    amount: 'Pay Scale: ₹19,500 – ₹62,000',
+    match: 40,
+    roles: ['Job Seeker']
+  },
+  {
+    type: 'scheme',
+    title: 'Ayushman Bharat – PM-JAY',
+    dept: 'National Health Authority',
+    desc: 'Health cover of ₹5 lakh per family per year for secondary and tertiary care hospitalization at empanelled hospitals.',
+    location: 'National',
+    date: '2026-09-30',
+    amount: '₹5 lakh health cover / year',
+    match: 80,
+    roles: ['Farmer', 'Worker', 'Other']
+  },
+  {
+    type: 'scheme',
+    title: 'Startup India Seed Fund',
+    dept: 'DPIIT, Ministry of Commerce',
+    desc: 'Financial assistance for startups for proof of concept, prototype development, product trials, and market entry.',
+    location: 'National',
+    date: '2026-10-31',
+    amount: 'Up to ₹20 lakh',
+    match: 38,
+    roles: ['Other', 'Student']
+  }
+];
+
+// ─── ONBOARDING ────────────────────────────────────────────
+document.querySelectorAll('.sg').forEach(g => {
+  g.addEventListener('click', e => {
+    const btn = e.target.closest('[data-v]');
+    if (!btn) return;
+    const key = g.dataset.k;
+    g.querySelectorAll('[data-v]').forEach(x => x.classList.remove('sel'));
+    btn.classList.add('sel');
+    S.ans[key] = btn.dataset.v;
+    document.getElementById('obHint').textContent = '✓ ' + btn.dataset.v + ' selected';
+  });
+});
+
+function nextStep() {
+  const keys = ['role', 'state', 'interest'];
+  const key  = keys[S.step - 1];
+  if (!S.ans[key]) {
+    toast('⚠ Please make a selection to continue.');
+    return;
+  }
+
+  if (S.step < 3) {
+    // mark current dot as done
+    const curDot = document.getElementById('pd' + S.step);
+    curDot.classList.remove('on');
+    curDot.classList.add('done');
+    curDot.textContent = '✓';
+
+    S.step++;
+
+    const stepEls = ['s1','s2','s3'];
+    stepEls.forEach((id, i) => {
+      document.getElementById(id).classList.toggle('hidden', i + 1 !== S.step);
+    });
+
+    document.getElementById('pd' + S.step).classList.add('on');
+    if (S.step > 1) document.getElementById('pl' + (S.step - 1)).classList.add('on');
+
+    document.getElementById('obHint').textContent = 'Select an option to continue';
+
+    if (S.step === 3) {
+      document.getElementById('nextBtn').textContent = 'Get Started →';
+      document.getElementById('nextBtn').classList.add('orange');
+    }
+  } else {
+    launchDash();
+  }
+}
+
+// ─── DASHBOARD LAUNCH ──────────────────────────────────────
+function launchDash() {
+  document.getElementById('ob').classList.add('hidden');
+  document.getElementById('dash').classList.remove('hidden');
+
+  document.getElementById('heroTitle').textContent =
+    `Welcome, ${S.ans.role}! 👋`;
+  document.getElementById('heroSub').textContent =
+    `Showing government opportunities personalized for ${S.ans.role}s in ${S.ans.state}, focused on ${S.ans.interest}.`;
+
+  const chipsEl = document.getElementById('heroChips');
+  chipsEl.innerHTML = [
+    `📍 ${S.ans.state}`,
+    `🎯 ${S.ans.role}`,
+    `🌟 ${S.ans.interest}`
+  ].map(c => `<div class="hero-chip">${c}</div>`).join('');
+
+  renderTabs();
+  renderCards();
+  initChat();
+}
+
+// ─── TABS ──────────────────────────────────────────────────
+function renderTabs() {
+  document.getElementById('tabs').innerHTML =
+    TABS.map(t =>
+      `<button class="tab-btn${S.tab === t ? ' on' : ''}" onclick="setTab('${t}')">${t}</button>`
+    ).join('');
+}
+
+function setTab(t) { S.tab = t; renderTabs(); renderCards(); }
+
+function filtered() {
+  if (S.tab === 'For You') return DATA;
+  const map = { Schemes: 'scheme', Jobs: 'job', Tenders: 'tender', Compensation: 'compensation' };
+  return DATA.filter(d => d.type === map[S.tab]);
+}
+
+// ─── CARDS ─────────────────────────────────────────────────
+function renderCards() {
+  const items = filtered();
+  document.getElementById('heroMatchCount').textContent = items.length;
+
+  document.getElementById('cardsList').innerHTML = items.map((d, i) => `
+    <div class="ocard ${d.type}">
+      <div class="ocard-top">
+        <span class="otag ${d.type}">${d.type.toUpperCase()}</span>
+        <h3>${d.title}</h3>
+        <span class="omatch">${d.match}% match</span>
+      </div>
+      <div class="odept">🏛 ${d.dept}</div>
+      <div class="odesc">${d.desc}</div>
+      <div class="ometa">
+        <span>📍 ${d.location}</span>
+        <span>📅 Last date: ${d.date}</span>
+      </div>
+      <div class="omoney">💰 ${d.amount}</div>
+      <div class="pbar-row">
+        <span>Eligibility Match</span>
+        <strong>${d.match}%</strong>
+      </div>
+      <div class="pbar"><span style="width:${d.match}%"></span></div>
+      <div class="ocard-actions">
+        <button class="view-btn" onclick="showDetail(${i})">View Details</button>
+        <button class="ai-btn" onclick="askAI('${d.title.replace(/'/g,"\\'")}')">🤖 Ask AI</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── MODAL WITH AI BACKEND ─────────────────────────────────
+async function showDetail(idx) {
+  const d = DATA[idx];
+  document.getElementById('mTitle').textContent  = d.title;
+  document.getElementById('mDept').textContent   = d.dept;
+  document.getElementById('mIcon').textContent   = TYPE_ICONS[d.type] || '📋';
+  document.getElementById('mBody').innerHTML = `
+    <div class="detail-loading">
+      <div class="loading-spinner"></div>
+      <p>Generating AI-powered details…</p>
+      <p style="font-size:12px;margin-top:6px;color:#999">Personalizing for your profile</p>
+    </div>`;
+  document.getElementById('modal').classList.remove('hidden');
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are JAANMITR AI, an expert on Indian government schemes, jobs, tenders, and welfare programs.
+User profile: Role=${S.ans.role}, State=${S.ans.state}, Interest=${S.ans.interest}.
+Respond ONLY with a valid JSON object (no markdown, no code fences) with exactly these keys:
+- overview: string (2-3 sentences about the scheme/opportunity)
+- eligibility: array of 4 strings (clear eligibility criteria)
+- howToApply: array of 4 strings (step-by-step application process)
+- documents: array of 5 strings (required documents)
+- deadline: string (application deadline details)
+- tip: string (one personalized tip for this specific user profile, 1-2 sentences)`,
+        messages: [{
+          role: 'user',
+          content: `Provide detailed information about: "${d.title}" by ${d.dept}. Amount/benefit: ${d.amount}. Description: ${d.desc}. Location: ${d.location}.`
+        }]
+      })
+    });
+
+    const j = await res.json();
+    const raw = j.content.map(x => x.text || '').join('').replace(/```json|```/g, '').trim();
+    const info = JSON.parse(raw);
+
+    document.getElementById('mBody').innerHTML = `
+      <div class="detail-section">
+        <h4>Overview</h4>
+        <p>${info.overview}</p>
+      </div>
+      <div class="detail-section">
+        <h4>Eligibility Criteria</h4>
+        <ul>${info.eligibility.map(e => `<li>${e}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-section">
+        <h4>How to Apply</h4>
+        <ul>${info.howToApply.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-section">
+        <h4>Required Documents</h4>
+        <ul>${info.documents.map(d => `<li>${d}</li>`).join('')}</ul>
+      </div>
+      <div class="detail-section">
+        <h4>Deadline & Dates</h4>
+        <p>${info.deadline}</p>
+      </div>
+      <div class="detail-section">
+        <h4>AI Tip for You</h4>
+        <div class="ai-tip-box"><p>💡 ${info.tip}</p></div>
+      </div>
+      <div class="modal-footer">
+        <button class="apply-btn" onclick="toast('🚀 Redirecting to application portal…')">Apply Now →</button>
+        <button class="share-btn" onclick="toast('📤 Link copied to clipboard!')">Share</button>
+      </div>`;
+  } catch (err) {
+    // Graceful fallback if API unavailable
+    document.getElementById('mBody').innerHTML = `
+      <div class="detail-section"><h4>Overview</h4><p>${d.desc}</p></div>
+      <div class="detail-section"><h4>Benefit / Amount</h4><p>${d.amount}</p></div>
+      <div class="detail-section"><h4>Coverage Area</h4><p>${d.location}</p></div>
+      <div class="detail-section"><h4>Last Date</h4><p>${d.date}</p></div>
+      <div class="detail-section">
+        <h4>AI Tip</h4>
+        <div class="ai-tip-box"><p>💡 Visit the official government portal or nearest Common Service Centre (CSC) to apply for this scheme. Carry your Aadhaar card and bank passbook.</p></div>
+      </div>
+      <div class="modal-footer">
+        <button class="apply-btn" onclick="toast('🚀 Redirecting to application portal…')">Apply Now →</button>
+        <button class="share-btn" onclick="toast('📤 Link copied to clipboard!')">Share</button>
+      </div>`;
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.add('hidden');
+}
+
+function handleModalClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+// ─── CHAT ──────────────────────────────────────────────────
+let chatHistory = [];
+
+const QUICK_QUESTIONS = [
+  'What schemes am I eligible for?',
+  'How do I apply for PM Kisan?',
+  'What documents do I need?',
+  'Explain MGNREGA in simple words',
+  'Are there jobs for me in my state?'
+];
+
+function initChat() {
+  const welcome = `Hello! 👋 I'm your JAANMITR AI assistant. I can see you're a ${S.ans.role} from ${S.ans.state} interested in ${S.ans.interest}. I'm here to help you find and apply for government schemes, jobs, and benefits. What would you like to know?`;
+
+  chatHistory = [
+    {
+      role: 'user',
+      content: `My profile: I am a ${S.ans.role} from ${S.ans.state} interested in ${S.ans.interest}. Keep this in mind for all answers.`
+    },
+    {
+      role: 'assistant',
+      content: welcome
+    }
+  ];
+
+  appendMsg('ai', welcome);
+
+  document.getElementById('chatChips').innerHTML =
+    QUICK_QUESTIONS.map(q =>
+      `<div class="q-chip" onclick="sendQuick('${q.replace(/'/g,"\\'")}')"> ${q}</div>`
+    ).join('');
+}
+
+function appendMsg(who, text) {
+  const el = document.createElement('div');
+  el.className = `msg ${who}`;
+  el.textContent = text;
+  const msgs = document.getElementById('chatMsgs');
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+  return el;
+}
+
+function appendTyping() {
+  const el = document.createElement('div');
+  el.className = 'msg ai';
+  el.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  const msgs = document.getElementById('chatMsgs');
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+  return el;
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+async function sendChat() {
+  const inp = document.getElementById('chatIn');
+  const txt = inp.value.trim();
+  if (!txt) return;
+  inp.value = '';
+  inp.style.height = 'auto';
+
+  appendMsg('user', txt);
+  chatHistory.push({ role: 'user', content: txt });
+
+  const typingEl = appendTyping();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are JAANMITR AI, a friendly and knowledgeable government scheme assistant for Indian citizens.
+User profile: Role=${S.ans.role}, State=${S.ans.state}, Interest=${S.ans.interest}.
+Guidelines:
+- Be helpful, warm, and specific to Indian government programs
+- Keep responses under 130 words and concise
+- Always refer to official sources when relevant (myscheme.gov.in, pmkisan.gov.in, etc.)
+- If asked in Hindi or other regional languages, respond in that language
+- Give actionable, practical advice`,
+        messages: chatHistory
+      })
+    });
+
+    const j = await res.json();
+    const reply = j.content.map(x => x.text || '').join('');
+    typingEl.innerHTML = '';
+    typingEl.textContent = reply;
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    typingEl.textContent = 'Sorry, I couldn\'t connect right now. Please check your connection and try again.';
+  }
+}
+
+function sendQuick(q) {
+  document.getElementById('chatIn').value = q;
+  sendChat();
+}
+
+function clearChat() {
+  document.getElementById('chatMsgs').innerHTML = '';
+  chatHistory = chatHistory.slice(0, 2); // keep system context
+  initChat();
+}
+
+function switchToHindi() {
+  document.getElementById('chatIn').value = 'अब से हिंदी में जवाब दें।';
+  sendChat();
+}
+
+function askAI(title) {
+  if (document.getElementById('dash').classList.contains('hidden')) return;
+  document.getElementById('chatIn').value = `Tell me more about "${title}" and whether I am eligible for it based on my profile.`;
+  sendChat();
+  document.querySelector('.chat-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function askLang() {
+  if (!document.getElementById('dash').classList.contains('hidden')) {
+    document.getElementById('chatIn').value = 'Please respond in Hindi from now on. / अब से हिंदी में जवाब दें।';
+    sendChat();
+    document.querySelector('.chat-box').scrollIntoView({ behavior: 'smooth' });
+  } else {
+    toast('🌐 Language settings available after setup');
+  }
+}
+
+// ─── TOAST ─────────────────────────────────────────────────
+function toast(msg, duration = 3000) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), duration);
+}
+</script>
+</body>
+</html>
