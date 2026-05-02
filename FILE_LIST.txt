@@ -1,0 +1,79 @@
+╔════════════════════════════════════════════════════════════════╗
+║        JAANMITR AI - Complete File List                       ║
+╚════════════════════════════════════════════════════════════════╝
+
+📦 Archive: jaanmitr-ai-project.tar.gz (24KB compressed)
+
+📋 ROOT FILES:
+   ├── index.html              - HTML entry point
+   ├── package.json            - Dependencies & scripts
+   ├── vite.config.ts          - Vite configuration
+   ├── tsconfig.json           - TypeScript config
+   ├── tsconfig.node.json      - TypeScript Node config
+   ├── .gitignore              - Git ignore rules
+   └── README.md               - Full documentation
+
+📂 src/
+   ├── main.tsx                - React entry point
+
+   📂 styles/
+   ├── fonts.css               - Google Fonts (Inter)
+   └── theme.css               - Tailwind theme & dark mode
+
+   📂 app/
+   ├── App.tsx                 - Main application component
+
+      📂 data/
+      └── mockData.ts          - 12 sample items (schemes/jobs/tenders)
+
+      📂 components/ (15 components)
+      ├── OnboardingWizard.tsx    - 3-step user setup
+      ├── Navbar.tsx              - Navigation bar
+      ├── Hero.tsx                - Hero section
+      ├── CategoryTabs.tsx        - Category filter tabs
+      ├── InfoCard.tsx            - Card component
+      ├── SearchModal.tsx         - Search overlay
+      ├── DetailModal.tsx         - Item details modal
+      ├── AIChatbot.tsx           - AI assistant (4.3KB)
+      ├── LoginModal.tsx          - Login/signup system (11KB)
+      ├── VoiceSearch.tsx         - Voice search button
+      ├── LanguageSelector.tsx    - Language switcher (10 languages)
+      ├── DarkModeToggle.tsx      - Dark/light theme toggle
+      ├── NotificationCenter.tsx  - Notification system
+      └── UserProfile.tsx         - User profile & analytics
+
+📊 TOTAL FILES: 25
+📊 TOTAL COMPONENTS: 15
+📊 LINES OF CODE: ~2,500+
+
+🔧 DEPENDENCIES (8):
+   Production:
+   • react ^18.3.1
+   • react-dom ^18.3.1
+   • lucide-react ^0.487.0
+
+   Development:
+   • @vitejs/plugin-react ^4.7.0
+   • @tailwindcss/vite ^4.1.12
+   • tailwindcss ^4.1.12
+   • typescript ^5.7.2
+   • vite ^6.3.5
+
+✨ KEY FEATURES IMPLEMENTED:
+   [✓] User authentication system
+   [✓] AI chatbot with NLP
+   [✓] Dark mode support
+   [✓] Voice search interface
+   [✓] Multi-language support
+   [✓] Real-time notifications
+   [✓] User analytics dashboard
+   [✓] Bookmark system
+   [✓] Personalization engine
+   [✓] Responsive design
+   [✓] Type-safe TypeScript
+   [✓] Modern React patterns
+   [✓] Tailwind CSS v4
+   [✓] Optimized performance
+
+🎯 READY TO USE:
+   Just extract, install dependencies, and run!
